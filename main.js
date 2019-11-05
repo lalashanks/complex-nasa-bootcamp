@@ -1,7 +1,7 @@
 const button = document.querySelector('button')
 const result = document.querySelector('#result')
 
-button.addEventListener('click', ()=>{
+button.addEventListener('click', temp()=>{
 
   fetch(`https://data.nasa.gov/resource/gvk9-iz74.json`)
     .then(res => res.json()) // parse response as JSON (plain response can be res.text())
@@ -19,14 +19,14 @@ button.addEventListener('click', ()=>{
             
         result.appendChild(textNode)
 
-        fetch(`https://api.darksky.net/forecast/${apiKey}/${latitude},${longitude}`)
+        fetch(`https://api.darksky.net/forecast/${latitude},${longitude}`)
           .then(res => res.json()) // parse response as JSON (plain response can be res.text())
           .then(response => {
             //console.log(response.[index].center)
             console.log(response)
             let temp = response.currently.temperature
             console.log(temp)
-            textNode.innerHTML += `<br>Current Temperature: ${temp}°F`
+            textNode.innerHTML += `<br>Current Temperature in ${info.city}, ${info.state}: ${temp}°F`
           })
         }
 
